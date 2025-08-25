@@ -69,25 +69,128 @@
         </section>
 
         <section class="mb-12">
-            <div class="bg-white dark:bg-apple-gray-900 rounded-xl shadow-xl overflow-hidden p-6 md:p-8 text-center">
-                <div class="aspect-w-16 aspect-h-9 w-full mb-6">
-                    <div class="bg-apple-gray-200 dark:bg-apple-gray-800 rounded-lg p-8 flex flex-col items-center justify-center h-[400px] md:h-[500px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-apple-blue mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <h3 class="text-2xl font-bold mb-4">DUO Game Preview</h3>
-                        <p class="text-apple-gray-700 dark:text-apple-gray-300 max-w-lg">Experience the colorful world of DUO, where matching shapes and colors creates an addictive puzzle experience!</p>
+            <div class="bg-white dark:bg-apple-gray-900 rounded-xl shadow-xl overflow-hidden">
+                <div class="p-4 bg-apple-blue text-white flex justify-between items-center">
+                    <h3 class="text-xl font-bold">DUO Game</h3>
+                    <div class="flex space-x-2">
+                        <button class="p-1 hover:bg-apple-blue-700 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                            </svg>
+                        </button>
+                        <button class="p-1 hover:bg-apple-blue-700 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div class="mt-6">
-                    <a href="https://www.crazygames.com/game/duo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-apple-blue hover:bg-apple-blue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-apple-blue transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                        </svg>
-                        Play DUO Now
-                    </a>
+                
+                <div class="game-container relative w-full h-[500px] md:h-[600px] bg-apple-gray-200 dark:bg-apple-gray-800 overflow-hidden">
+                    <!-- Game Canvas -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="game-board grid grid-cols-6 grid-rows-6 gap-2 p-4 w-[90%] max-w-lg aspect-square">
+                            <!-- Game Tiles -->
+                            <div class="bg-apple-blue/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-red/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-green/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-purple/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-yellow/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-teal/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            
+                            <div class="bg-apple-red/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-purple/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-yellow/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-teal/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-blue/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-green/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            
+                            <div class="bg-apple-yellow/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-teal/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-blue/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-green/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-red/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-purple/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            
+                            <div class="bg-apple-blue/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-green/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-red/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-purple/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-yellow/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-teal/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            
+                            <div class="bg-apple-green/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-red/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-purple/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-yellow/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-teal/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-blue/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            
+                            <div class="bg-apple-purple/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-yellow/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-teal/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-blue/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-green/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                            <div class="bg-apple-red/80 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Game UI Overlay -->
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-apple-gray-900/90 px-4 py-2 rounded-lg shadow-lg">
+                        <div class="flex items-center space-x-4">
+                            <div>
+                                <p class="text-sm text-apple-gray-600 dark:text-apple-gray-400">Score</p>
+                                <p class="text-xl font-bold text-apple-blue">0</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-apple-gray-600 dark:text-apple-gray-400">Level</p>
+                                <p class="text-xl font-bold text-apple-green">1</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-apple-gray-600 dark:text-apple-gray-400">Time</p>
+                                <p class="text-xl font-bold text-apple-red">60s</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Start Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/70">
+                        <div class="text-center p-8 bg-white dark:bg-apple-gray-900 rounded-xl shadow-2xl max-w-md">
+                            <h3 class="text-2xl font-bold mb-4">Ready to Play DUO?</h3>
+                            <p class="mb-6 text-apple-gray-700 dark:text-apple-gray-300">Match colors and shapes to score points and complete levels!</p>
+                            <div class="flex flex-col space-y-3">
+                                <button class="w-full px-6 py-3 bg-apple-blue text-white rounded-lg font-medium hover:bg-apple-blue/90 transition-colors">Start Game</button>
+                                <button class="w-full px-6 py-3 bg-apple-gray-200 dark:bg-apple-gray-800 text-apple-gray-800 dark:text-white rounded-lg font-medium hover:bg-apple-gray-300 dark:hover:bg-apple-gray-700 transition-colors">How to Play</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <div class="p-4 bg-white dark:bg-apple-gray-900 border-t border-apple-gray-200 dark:border-apple-gray-800">
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-4">
+                            <button class="px-4 py-2 bg-apple-blue text-white rounded-lg hover:bg-apple-blue/90 transition-colors flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                </svg>
+                                Play
+                            </button>
+                            <button class="px-4 py-2 bg-apple-gray-200 dark:bg-apple-gray-800 text-apple-gray-800 dark:text-white rounded-lg hover:bg-apple-gray-300 dark:hover:bg-apple-gray-700 transition-colors">
+                                Restart
+                            </button>
+                        </div>
+                        <div>
+                            <button class="p-2 text-apple-gray-600 dark:text-apple-gray-400 hover:text-apple-blue dark:hover:text-apple-blue transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
             </div>
         </section>
 
