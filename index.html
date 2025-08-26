@@ -2,92 +2,78 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1e3c72">
-    
-    <!-- 资源预加载优化 -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="game.js" as="script">
-    <link rel="dns-prefetch" href="//localhost">
-    
-    <!-- 缓存策略 -->
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
-    <meta http-equiv="Expires" content="Thu, 31 Dec 2025 23:59:59 GMT">
-    
-    <title>吃豆人游戏 - Pac-Man</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吃豆人游戏</title>
+    <meta name="description" content="经典吃豆人游戏，使用HTML5 Canvas制作">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="game-container">
         <div class="header">
-            <h1>🎮 吃豆人游戏</h1>
+            <h1>吃豆人游戏</h1>
             <div class="score-board">
                 <div class="score">得分: <span id="score">0</span></div>
-                <div class="level">关卡: <span id="level">1</span></div>
                 <div class="lives">生命: <span id="lives">3</span></div>
             </div>
         </div>
         
-        <div class="game-board">
+        <div class="game-area">
             <canvas id="gameCanvas" width="800" height="600"></canvas>
             <div class="game-overlay" id="gameOverlay">
-                <div class="start-screen" id="startScreen">
-                    <h2>🟡 吃豆人大冒险</h2>
-                    <p>使用方向键、WASD或下方触屏按钮控制移动</p>
-                    <p>吃掉所有豆子，避开幽灵！</p>
-                    <button id="startButton" class="game-button">开始游戏</button>
-                </div>
-                
-                <div class="pause-screen" id="pauseScreen" style="display: none;">
-                    <h2>⏸️ 游戏暂停</h2>
-                    <button id="resumeButton" class="game-button">继续游戏</button>
-                    <button id="restartButton" class="game-button">重新开始</button>
-                </div>
-                
-                <div class="game-over-screen" id="gameOverScreen" style="display: none;">
-                    <h2>💀 游戏结束</h2>
-                    <p>最终得分: <span id="finalScore">0</span></p>
-                    <p id="gameOverMessage">再接再厉！</p>
-                    <button id="playAgainButton" class="game-button">再玩一次</button>
-                </div>
-                
-                <div class="level-complete-screen" id="levelCompleteScreen" style="display: none;">
-                    <h2>🎉 关卡完成！</h2>
-                    <p>恭喜通过第 <span id="completedLevel">1</span> 关！</p>
-                    <button id="nextLevelButton" class="game-button">下一关</button>
+                <div class="message" id="gameMessage">按空格键开始游戏</div>
+            </div>
+            
+            <!-- 难度选择界面 -->
+            <div class="difficulty-overlay" id="difficultyOverlay">
+                <div class="difficulty-panel">
+                    <h2>选择难度</h2>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn heaven" data-difficulty="heaven">
+                            <span class="difficulty-icon">😇</span>
+                            <span class="difficulty-name">天堂</span>
+                            <span class="difficulty-desc">轻松模式 - 幽灵缓慢，墙壁较少</span>
+                        </button>
+                        <button class="difficulty-btn human" data-difficulty="human">
+                            <span class="difficulty-icon">😊</span>
+                            <span class="difficulty-name">人间</span>
+                            <span class="difficulty-desc">标准模式 - 平衡的游戏体验</span>
+                        </button>
+                        <button class="difficulty-btn hell" data-difficulty="hell">
+                            <span class="difficulty-icon">😈</span>
+                            <span class="difficulty-name">地狱</span>
+                            <span class="difficulty-desc">困难模式 - 幽灵迅猛，迷宫复杂</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="controls">
-            <div class="control-info">
-                <h3>🎯 游戏说明</h3>
-                <ul>
-                    <li>🔸 吃掉小豆子获得10分</li>
-                    <li>🔹 吃掉大豆子获得50分并暂时无敌</li>
-                    <li>👻 无敌状态下吃掉幽灵获得200分</li>
-                    <li>⏸️ 按ESC键暂停游戏</li>
-                    <li>🎮 使用方向键、WASD或触屏按钮移动</li>
-                </ul>
-            </div>
-            
-            <div class="virtual-controls">
-                <div class="dpad">
-                    <button class="dpad-btn" id="upBtn">↑</button>
-                    <div class="dpad-middle">
-                        <button class="dpad-btn" id="leftBtn">←</button>
-                        <button class="dpad-btn" id="rightBtn">→</button>
-                    </div>
-                    <button class="dpad-btn" id="downBtn">↓</button>
-                </div>
-                <button id="pauseBtn" class="control-btn">暂停</button>
-            </div>
+            <p>使用方向键或虚拟摇杆控制移动</p>
+            <p>按空格键或暂停按钮暂停/继续</p>
+            <p>吃掉所有豆子获得胜利！</p>
         </div>
     </div>
     
-    <script src="game.js"></script>
+    <!-- 移动端虚拟控制器 -->
+    <div class="mobile-controls">
+        <div class="dpad">
+            <div class="dpad-button dpad-up" data-direction="up">↑</div>
+            <div class="dpad-button dpad-left" data-direction="left">←</div>
+            <div class="dpad-button dpad-center">PAC</div>
+            <div class="dpad-button dpad-right" data-direction="right">→</div>
+            <div class="dpad-button dpad-down" data-direction="down">↓</div>
+        </div>
+    </div>
+    
+    <div class="action-buttons">
+        <div class="pause-button" id="pauseBtn">⏸️</div>
+    </div>
+    
+    <script src="./js/game.js"></script>
+    <script src="./js/player.js"></script>
+    <script src="./js/ghost.js"></script>
+    <script src="./js/maze.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
