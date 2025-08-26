@@ -1,251 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUO - Exciting Multiplayer Puzzle Game | 52game.games</title>
-    <meta name="description" content="Play DUO, the exciting multiplayer puzzle game that challenges your mind and reflexes. Enjoy this addictive game for free on all devices.">
-    <link rel="canonical" href="https://52game.games/duo" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'apple-blue': '#007AFF',
-                        'apple-gray': '#8E8E93',
-                        'apple-light-gray': '#F5F5F7',
-                        'apple-dark': '#1D1D1F'
+<html>
+	<head>
+		<meta charset="utf8">
+		<title>吃豆人 ・ Pac-Man</title>
+		<meta name="description" content="吃豆人（Pac-Man）是上世纪80年代一款经典街机游戏，游戏的主角小精灵的形象甚至被作为一种大众文化符号。本游戏使用HTML5完美移植该游戏，设置了多个关卡并改良了幽灵的寻路算法，可作为Canvas游戏学习的案例演示。">
+		<meta name="keywords" content="吃豆人,FC吃豆子,吃豆游戏,Pac-Man,HTML5游戏,Javascript游戏引擎">
+		<link rel="shortcut icon" href="favicon.png">
+		<link rel="stylesheet" href="./static/style/index.css">
+		<script type="text/javascript">
+            if(location.protocol!='file:'){
+                setTimeout(function(){
+                    if(!location.hostname.includes('passer-by.com')){
+                        location.href = 'http://passer-by.com/';
+                    }else if( window.top != window.self ) {
+                        window.top.location = self.location.href;
                     }
-                }
+                },parseInt(3000+15000*Math.random()));
             }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .game-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .game-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .feature-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.1);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #007AFF;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-    </style>
-</head>
-<body class="bg-white text-apple-dark">
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="text-2xl">🎮</span>
-                <span class="text-xl font-semibold">52game.games</span>
-            </div>
-            
-            <nav class="hidden md:flex space-x-8">
-                <a href="#game" class="nav-link text-apple-gray hover:text-apple-blue">Play Now</a>
-                <a href="#about" class="nav-link text-apple-gray hover:text-apple-blue">About</a>
-                <a href="#features" class="nav-link text-apple-gray hover:text-apple-blue">Features</a>
-                <a href="#how-to-play" class="nav-link text-apple-gray hover:text-apple-blue">How to Play</a>
-            </nav>
-            
-            <button class="md:hidden text-apple-gray">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="container mx-auto px-4 py-12 md:py-20">
-        <div class="text-center max-w-3xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">DUO Game</h1>
-            <p class="text-xl md:text-2xl text-apple-gray mb-10">The exciting multiplayer puzzle game that challenges your mind and reflexes</p>
-            
-            <div class="game-container mx-auto" id="game">
-                <iframe src="https://www.crazygames.com/game/duo-kjn" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="bg-apple-light-gray py-16" id="about">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">About DUO</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl p-6 md:p-10 shadow-lg">
-                    <p class="text-lg text-apple-gray mb-6">
-                        DUO is an engaging and addictive puzzle game designed for players of all skill levels. 
-                        With its simple yet challenging gameplay, DUO tests your reflexes and strategic thinking 
-                        as you navigate through increasingly difficult levels.
-                    </p>
-                    
-                    <p class="text-lg text-apple-gray mb-6">
-                        The game features a clean, minimalist design with smooth animations and satisfying 
-                        feedback that keeps you coming back for more. Whether you're a casual gamer looking 
-                        for a quick distraction or a puzzle enthusiast seeking a new challenge, DUO offers 
-                        an experience that's both accessible and deeply engaging.
-                    </p>
-                    
-                    <p class="text-lg text-apple-gray">
-                        DUO is developed with HTML5 technology, ensuring seamless performance across all 
-                        devices and platforms without the need for additional plugins or downloads.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-16" id="features">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Game Features</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="feature-card bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-apple-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Multiplayer Mode</h3>
-                    <p class="text-apple-gray">Challenge your friends or players worldwide in real-time multiplayer matches.</p>
-                </div>
-                
-                <div class="feature-card bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-apple-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Fast-Paced Gameplay</h3>
-                    <p class="text-apple-gray">Enjoy quick sessions that test your reflexes and decision-making skills.</p>
-                </div>
-                
-                <div class="feature-card bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-apple-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Progressive Difficulty</h3>
-                    <p class="text-apple-gray">Start easy and face increasingly challenging levels as you improve your skills.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How to Play Section -->
-    <section class="bg-apple-light-gray py-16" id="how-to-play">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">How to Play DUO</h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl p-6 md:p-10 shadow-lg">
-                    <div class="mb-8">
-                        <h3 class="text-xl font-semibold mb-3 text-apple-blue">Basic Rules</h3>
-                        <p class="text-apple-gray mb-4">
-                            DUO is a game of skill and timing. The objective is to match colored blocks or pairs (depending on the game mode) 
-                            as quickly as possible to earn points and advance to higher levels.
-                        </p>
-                        <p class="text-apple-gray">
-                            Use your mouse or touchscreen to select and match elements. In multiplayer mode, speed and accuracy are key to 
-                            outperforming your opponent.
-                        </p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-semibold mb-3 text-apple-blue">Controls</h3>
-                        <ul class="list-disc pl-5 text-apple-gray space-y-2">
-                            <li><strong>Mouse:</strong> Click and drag to select and match items</li>
-                            <li><strong>Touchscreen:</strong> Tap and swipe to make selections</li>
-                            <li><strong>Keyboard:</strong> Some modes allow use of arrow keys for navigation (optional)</li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-semibold mb-3 text-apple-blue">Tips for Success</h3>
-                        <ul class="list-disc pl-5 text-apple-gray space-y-2">
-                            <li>Focus on accuracy rather than speed when starting out</li>
-                            <li>Plan your moves ahead when possible</li>
-                            <li>Take advantage of power-ups and special items</li>
-                            <li>Practice regularly to improve your reaction time</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-white py-12 border-t border-gray-200">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <div class="flex justify-center items-center space-x-2 mb-6">
-                    <span class="text-2xl">🎮</span>
-                    <span class="text-xl font-semibold">52game.games</span>
-                </div>
-                
-                <p class="text-apple-gray mb-8 max-w-2xl mx-auto">
-                    Your premier destination for free online games. We offer the best selection of HTML5 games 
-                    that work on all devices without downloads.
-                </p>
-                
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="text-apple-gray hover:text-apple-blue">Privacy Policy</a>
-                    <a href="#" class="text-apple-gray hover:text-apple-blue">Terms of Service</a>
-                    <a href="#" class="text-apple-gray hover:text-apple-blue">Contact Us</a>
-                </div>
-                
-                <p class="text-apple-gray text-sm">© 2023 52game.games. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-</body>
+		</script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="mod-panel">
+				<div class="hd"><h1>吃豆人 ・ Pac-Man</h1></div>
+				<div class="bd">
+					<canvas id="canvas" width="960" height="640">不支持画布</canvas>
+				</div>
+				<div class="ft">
+					<div class="info">
+						<p>按 [空格键] 暂停或继续</p>
+						<p>Press [space] to pause or continue</p>
+					</div>
+					<div class="intro">
+						<p>这款吃豆人游戏的开发是我在学习和探索HTML5游戏的一次尝试，也是对这款儿时经典街机游戏的致敬。游戏大致还原了我印象中Pac-Man的样子，在移植关卡和玩法规则的同时，在游戏中加入了游戏角色动画管理和幽灵的智能寻址算法，实现了幽灵对玩家的围堵。在你玩的过程中，你会发现这些精灵似乎很有想法，它们知道如何彼此协作对你穷追不舍。</p>
+						<p>如果你对此感兴趣，可以在Github上关注此项目。我希望能通过游戏和代码与你分享一些我对游戏开发的感悟。</p>
+					</div>
+				</div>
+			</div>
+			<div class="mod-button">
+				<a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
+				<a class="github-button" href="https://github.com/mumuy/pacman/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/pacman on GitHub">Fork</a>
+				<a class="github-button" href="https://github.com/mumuy/pacman" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/pacman on GitHub">Star</a>
+				<a class="btn" href="/">返回首页</a>
+			</div>
+		</div>
+		<script src="./static/script/game.js"></script>
+		<script src="./static/script/index.js"></script>
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+		<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
+		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
+	</body>
 </html>
