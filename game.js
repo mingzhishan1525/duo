@@ -19,12 +19,41 @@ class PacManGame {
         this.ROWS = 24;
         this.COLS = 32;
         
+        // 渲染优化
+        this.offscreenCanvas = document.createElement('canvas');
+        this.offscreenCtx = this.offscreenCanvas.getContext('2d');
+        this.offscreenCanvas.width = 800;
+        this.offscreenCanvas.height = 600;
+        this.mazeRendered = false;
+        this.lastRenderTime = 0;
+        this.targetFPS = 60;
+        this.frameInterval = 1000 / this.targetFPS;
+        
+        // 性能监控
+        this.frameCount = 0;
+        this.fpsStartTime = Date.now();
+        this.currentFPS = 0;
+        
+        // 内存管理优化
+        this.objectPool = new Map();
+        this.eventListeners = new Map();
+        this.tempObjects = [];
+        
+        // 初始化对象池
+        this.initObjectPools();
+        
         // 移动端触屏支持
         this.touchStartX = 0;
         this.touchStartY = 0;
         this.touchEndX = 0;
         this.touchEndY = 0;
         this.minSwipeDistance = 30;
+        
+        // 触摸事件优化
+        this.lastTouchTime = 0;
+        this.touchThrottle = 100; // 100ms节流
+        this.touchEventQueue = [];
+        this.isTouchProcessing = false;
         
         // 游戏对象
         this.pacman = null;
@@ -228,25 +257,50 @@ class PacManGame {
         });
     }
     
-    // 处理触屏开始
+    // 处理触屏开始 - 优化版
     handleTouchStart(e) {
         e.preventDefault();
+        
+        const now = Date.now();
+        if (now - this.lastTouchTime < this.touchThrottle) {
+            return;
+        }
+        
         const touch = e.touches[0];
         this.touchStartX = touch.clientX;
         this.touchStartY = touch.clientY;
+        this.lastTouchTime = now;
     }
     
-    // 处理触屏移动
+    // 处理触屏移动 - 优化版
     handleTouchMove(e) {
         e.preventDefault();
+        e.stopPropagation();
+        
+        // 防止页面滚动和缩放
+        if (e.scale && e.scale !== 1) {
+            e.preventDefault();
+        }
     }
     
-    // 处理触屏结束
+    // 处理触屏结束 - 优化版
     handleTouchEnd(e) {
         e.preventDefault();
+        e.stopPropagation();
         
-        if (this.gameState !== 'playing') return;
+        if (this.gameState !== 'playing' || this.isTouchProcessing) return;
         
+        this.isTouchProcessing = true;
+        
+        // 使用requestAnimationFrame延迟处理，防止阻塞
+        requestAnimationFrame(() => {
+            this.processTouchEnd(e);
+            this.isTouchProcessing = false;
+        });
+    }
+    
+    // 处理触摸结束逻辑
+    processTouchEnd(e) {
         const touch = e.changedTouches[0];
         this.touchEndX = touch.clientX;
         this.touchEndY = touch.clientY;
@@ -258,21 +312,16 @@ class PacManGame {
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         if (distance < this.minSwipeDistance) return;
         
-        // 判断滑动方向
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // 判断滑动方向（优化算法）
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+        
+        if (absX > absY) {
             // 水平滑动
-            if (deltaX > 0) {
-                this.setDirection('right');
-            } else {
-                this.setDirection('left');
-            }
+            this.setDirection(deltaX > 0 ? 'right' : 'left');
         } else {
             // 垂直滑动
-            if (deltaY > 0) {
-                this.setDirection('down');
-            } else {
-                this.setDirection('up');
-            }
+            this.setDirection(deltaY > 0 ? 'down' : 'up');
         }
     }
     
@@ -365,17 +414,45 @@ class PacManGame {
         this.startGame();
     }
     
-    // 游戏主循环
+    // 游戏主循环 - 优化版
     gameLoop(currentTime = 0) {
         if (this.gameState !== 'playing') return;
         
-        const deltaTime = currentTime - this.lastTime;
+        // 帧率控制
+        const deltaTime = currentTime - this.lastRenderTime;
+        if (deltaTime < this.frameInterval) {
+            this.animationId = requestAnimationFrame((time) => this.gameLoop(time));
+            return;
+        }
+        
+        this.lastRenderTime = currentTime;
+        
+        // 性能监控
+        this.updateFPSCounter();
+        
+        const gameDelta = currentTime - this.lastTime;
         this.lastTime = currentTime;
         
-        this.update(deltaTime);
+        this.update(gameDelta);
         this.render();
         
         this.animationId = requestAnimationFrame((time) => this.gameLoop(time));
+    }
+    
+    // FPS计数器
+    updateFPSCounter() {
+        this.frameCount++;
+        const now = Date.now();
+        if (now - this.fpsStartTime >= 1000) {
+            this.currentFPS = this.frameCount;
+            this.frameCount = 0;
+            this.fpsStartTime = now;
+            
+            // 在开发模式下显示FPS
+            if (window.location.hostname === 'localhost') {
+                console.log(`FPS: ${this.currentFPS}`);
+            }
+        }
     }
     
     // 更新游戏状态
@@ -513,29 +590,31 @@ class PacManGame {
         });
     }
     
-    // 检查碰撞
+    // 检查碰撞 - 优化版
     checkCollisions() {
-        const pacmanX = Math.floor(this.pacman.x + 0.5);
-        const pacmanY = Math.floor(this.pacman.y + 0.5);
+        const pacmanPos = this.getPooledObject('position');
+        pacmanPos.x = Math.floor(this.pacman.x + 0.5);
+        pacmanPos.y = Math.floor(this.pacman.y + 0.5);
         
-        // 检查豆子碰撞
+        // 检查豆子碰撞（优化版）
         for (let i = this.dots.length - 1; i >= 0; i--) {
             const dot = this.dots[i];
-            if (dot.x === pacmanX && dot.y === pacmanY) {
+            if (dot.x === pacmanPos.x && dot.y === pacmanPos.y) {
                 this.dots.splice(i, 1);
                 this.score += 10;
                 this.updateUI();
+                this.mazeRendered = false; // 标记需要重新渲染静态元素
             }
         }
         
-        // 检查大豆子碰撞
+        // 检查大豆子碰撞（优化版）
         for (let i = this.powerDots.length - 1; i >= 0; i--) {
             const powerDot = this.powerDots[i];
-            if (powerDot.x === pacmanX && powerDot.y === pacmanY) {
+            if (powerDot.x === pacmanPos.x && powerDot.y === pacmanPos.y) {
                 this.powerDots.splice(i, 1);
                 this.score += 50;
                 this.pacman.powerMode = true;
-                this.pacman.powerModeTimer = 10000; // 10秒无敌时间
+                this.pacman.powerModeTimer = 10000;
                 
                 // 让幽灵进入恐惧状态
                 this.ghosts.forEach(ghost => {
@@ -543,17 +622,21 @@ class PacManGame {
                 });
                 
                 this.updateUI();
+                this.mazeRendered = false; // 标记需要重新渲染静态元素
             }
         }
         
-        // 检查幽灵碰撞
-        this.ghosts.forEach(ghost => {
-            const distance = Math.sqrt(
-                Math.pow(ghost.x - this.pacman.x, 2) + 
-                Math.pow(ghost.y - this.pacman.y, 2)
-            );
+        // 检查幽灵碰撞（优化算法）
+        const pacmanX = this.pacman.x;
+        const pacmanY = this.pacman.y;
+        
+        for (let i = 0; i < this.ghosts.length; i++) {
+            const ghost = this.ghosts[i];
+            const dx = ghost.x - pacmanX;
+            const dy = ghost.y - pacmanY;
+            const distanceSquared = dx * dx + dy * dy; // 避免开方计算
             
-            if (distance < 0.8) {
+            if (distanceSquared < 0.64) { // 0.8 * 0.8 = 0.64
                 if (this.pacman.powerMode && ghost.mode === 'frightened') {
                     // 吃掉幽灵
                     this.score += 200;
@@ -573,7 +656,10 @@ class PacManGame {
                     }
                 }
             }
-        });
+        }
+        
+        // 将位置对象返回池
+        this.returnPooledObject('position', pacmanPos);
     }
     
     // 检查胜利条件
@@ -640,23 +726,162 @@ class PacManGame {
         }
     }
     
-    // 渲染游戏
+    // 渲染游戏 - 优化版
     render() {
-        // 清空画布
+        // 清空主画布
         this.ctx.fillStyle = '#000';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         
+        // 绘制静态元素到离屏画布（只绘制一次）
+        if (!this.mazeRendered) {
+            this.renderStaticElements();
+            this.mazeRendered = true;
+        }
+        
+        // 将离屏画布的静态元素复制到主画布
+        this.ctx.drawImage(this.offscreenCanvas, 0, 0);
+        
+        // 绘制动态元素
+        this.renderDynamicElements();
+    }
+    
+    // 绘制静态元素（迷宫和豆子）
+    renderStaticElements() {
+        // 清空离屏画布
+        this.offscreenCtx.fillStyle = '#000';
+        this.offscreenCtx.fillRect(0, 0, this.offscreenCanvas.width, this.offscreenCanvas.height);
+        
         // 绘制迷宫
-        this.renderMaze();
+        this.renderMazeToOffscreen();
         
         // 绘制豆子
-        this.renderDots();
-        
+        this.renderDotsToOffscreen();
+    }
+    
+    // 绘制动态元素（Pac-Man和幽灵）
+    renderDynamicElements() {
         // 绘制Pac-Man
         this.renderPacman();
         
         // 绘制幽灵
         this.renderGhosts();
+        
+        // 在开发模式下显示FPS
+        if (window.location.hostname === 'localhost') {
+            this.ctx.fillStyle = '#FFD700';
+            this.ctx.font = '16px Arial';
+            this.ctx.fillText(`FPS: ${this.currentFPS}`, 10, 25);
+        }
+    }
+    
+    // 绘制迷宫到离屏画布
+    renderMazeToOffscreen() {
+        this.offscreenCtx.fillStyle = '#0000FF';
+        for (let row = 0; row < this.ROWS; row++) {
+            for (let col = 0; col < this.COLS; col++) {
+                if (this.maze[row][col] === 1) {
+                    this.offscreenCtx.fillRect(
+                        col * this.CELL_SIZE,
+                        row * this.CELL_SIZE,
+                        this.CELL_SIZE,
+                        this.CELL_SIZE
+                    );
+                }
+            }
+        }
+    }
+    
+    // 绘制豆子到离屏画布
+    renderDotsToOffscreen() {
+        // 小豆子
+        this.offscreenCtx.fillStyle = '#FFFF00';
+        this.dots.forEach(dot => {
+            this.offscreenCtx.beginPath();
+            this.offscreenCtx.arc(
+                dot.x * this.CELL_SIZE + this.CELL_SIZE / 2,
+                dot.y * this.CELL_SIZE + this.CELL_SIZE / 2,
+                3,
+                0,
+                Math.PI * 2
+            );
+            this.offscreenCtx.fill();
+        });
+        
+        // 大豆子
+        this.offscreenCtx.fillStyle = '#FFFF00';
+        this.powerDots.forEach(powerDot => {
+            this.offscreenCtx.beginPath();
+            this.offscreenCtx.arc(
+                powerDot.x * this.CELL_SIZE + this.CELL_SIZE / 2,
+                powerDot.y * this.CELL_SIZE + this.CELL_SIZE / 2,
+                8,
+                0,
+                Math.PI * 2
+            );
+            this.offscreenCtx.fill();
+        });
+    }
+    
+    // 初始化对象池
+    initObjectPools() {
+        // 初始化位置对象池
+        this.objectPool.set('position', []);
+        for (let i = 0; i < 50; i++) {
+            this.objectPool.get('position').push({ x: 0, y: 0 });
+        }
+        
+        // 初始化距离计算对象池
+        this.objectPool.set('distance', []);
+        for (let i = 0; i < 20; i++) {
+            this.objectPool.get('distance').push({ value: 0 });
+        }
+    }
+    
+    // 从对象池获取对象
+    getPooledObject(type) {
+        const pool = this.objectPool.get(type);
+        if (pool && pool.length > 0) {
+            return pool.pop();
+        }
+        
+        // 如果池中没有对象，创建新的
+        switch (type) {
+            case 'position':
+                return { x: 0, y: 0 };
+            case 'distance':
+                return { value: 0 };
+            default:
+                return null;
+        }
+    }
+    
+    // 将对象返回到对象池
+    returnPooledObject(type, obj) {
+        const pool = this.objectPool.get(type);
+        if (pool && pool.length < 100) { // 限制池大小
+            pool.push(obj);
+        }
+    }
+    
+    // 添加事件监听器
+    addEventListenerWithCleanup(element, event, handler, options) {
+        element.addEventListener(event, handler, options);
+        
+        const key = `${element.constructor.name}_${event}`;
+        if (!this.eventListeners.has(key)) {
+            this.eventListeners.set(key, []);
+        }
+        this.eventListeners.get(key).push({ element, event, handler, options });
+    }
+    
+    // 清理所有事件监听器
+    cleanupEventListeners() {
+        this.eventListeners.forEach((listeners, key) => {
+            listeners.forEach(({ element, event, handler }) => {
+                element.removeEventListener(event, handler);
+            });
+        });
+        this.eventListeners.clear();
     }
     
     // 绘制迷宫
@@ -792,9 +1017,77 @@ class PacManGame {
             }
         });
     }
+    
+    // 销毁游戏实例，清理资源
+    destroy() {
+        // 停止动画循环
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+        
+        // 清理事件监听器
+        this.cleanupEventListeners();
+        
+        // 清理对象池
+        this.objectPool.clear();
+        this.tempObjects.length = 0;
+        
+        // 清理Canvas上下文
+        if (this.ctx) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+        if (this.offscreenCtx) {
+            this.offscreenCtx.clearRect(0, 0, this.offscreenCanvas.width, this.offscreenCanvas.height);
+        }
+        
+        // 清理游戏对象
+        this.ghosts.length = 0;
+        this.dots.length = 0;
+        this.powerDots.length = 0;
+        this.maze.length = 0;
+        
+        console.log('游戏资源已清理');
+    }
+    
+    // 性能监控方法
+    getPerformanceStats() {
+        return {
+            fps: this.currentFPS,
+            objectPoolSize: {
+                position: this.objectPool.get('position')?.length || 0,
+                distance: this.objectPool.get('distance')?.length || 0
+            },
+            memoryUsage: {
+                dots: this.dots.length,
+                powerDots: this.powerDots.length,
+                ghosts: this.ghosts.length,
+                eventListeners: this.eventListeners.size
+            }
+        };
+    }
 }
 
 // 初始化游戏
 document.addEventListener('DOMContentLoaded', () => {
     const game = new PacManGame();
+    
+    // 在页面卸载时清理资源
+    window.addEventListener('beforeunload', () => {
+        if (game && typeof game.destroy === 'function') {
+            game.destroy();
+        }
+    });
+    
+    // 在开发模式下提供性能监控
+    if (window.location.hostname === 'localhost') {
+        window.gamePerformance = () => {
+            console.log('游戏性能统计:', game.getPerformanceStats());
+        };
+        
+        // 每10秒输出一次性能统计
+        setInterval(() => {
+            console.log('性能监控:', game.getPerformanceStats());
+        }, 10000);
+    }
 });

@@ -33,6 +33,11 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     max-width: 1000px;
     width: 100%;
+    /* 性能优化 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    contain: layout style paint;
 }
 
 /* 头部样式 */
@@ -87,6 +92,12 @@ body {
     display: block;
     /* 触屏优化 */
     touch-action: none;
+    /* 硬件加速优化 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* 游戏覆盖层 */
@@ -234,6 +245,11 @@ body {
     touch-action: manipulation;
     min-height: 44px; /* iOS推荐的最小触屏区域 */
     min-width: 44px;
+    /* 性能优化 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform, background;
+    contain: layout style;
 }
 
 .dpad-btn:hover {
