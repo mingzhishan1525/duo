@@ -1,52 +1,83 @@
-<html>
-	<head>
-		<meta charset="utf8">
-		<title>吃豆人 ・ Pac-Man</title>
-		<meta name="description" content="吃豆人（Pac-Man）是上世纪80年代一款经典街机游戏，游戏的主角小精灵的形象甚至被作为一种大众文化符号。本游戏使用HTML5完美移植该游戏，设置了多个关卡并改良了幽灵的寻路算法，可作为Canvas游戏学习的案例演示。">
-		<meta name="keywords" content="吃豆人,FC吃豆子,吃豆游戏,Pac-Man,HTML5游戏,Javascript游戏引擎">
-		<link rel="shortcut icon" href="favicon.png">
-		<link rel="stylesheet" href="./static/style/index.css">
-		<script type="text/javascript">
-            if(location.protocol!='file:'){
-                setTimeout(function(){
-                    if(!location.hostname.includes('passer-by.com')){
-                        location.href = 'http://passer-by.com/';
-                    }else if( window.top != window.self ) {
-                        window.top.location = self.location.href;
-                    }
-                },parseInt(3000+15000*Math.random()));
-            }
-		</script>
-	</head>
-	<body>
-		<div class="wrapper">
-			<div class="mod-panel">
-				<div class="hd"><h1>吃豆人 ・ Pac-Man</h1></div>
-				<div class="bd">
-					<canvas id="canvas" width="960" height="640">不支持画布</canvas>
-				</div>
-				<div class="ft">
-					<div class="info">
-						<p>按 [空格键] 暂停或继续</p>
-						<p>Press [space] to pause or continue</p>
-					</div>
-					<div class="intro">
-						<p>这款吃豆人游戏的开发是我在学习和探索HTML5游戏的一次尝试，也是对这款儿时经典街机游戏的致敬。游戏大致还原了我印象中Pac-Man的样子，在移植关卡和玩法规则的同时，在游戏中加入了游戏角色动画管理和幽灵的智能寻址算法，实现了幽灵对玩家的围堵。在你玩的过程中，你会发现这些精灵似乎很有想法，它们知道如何彼此协作对你穷追不舍。</p>
-						<p>如果你对此感兴趣，可以在Github上关注此项目。我希望能通过游戏和代码与你分享一些我对游戏开发的感悟。</p>
-					</div>
-				</div>
-			</div>
-			<div class="mod-button">
-				<a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
-				<a class="github-button" href="https://github.com/mumuy/pacman/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/pacman on GitHub">Fork</a>
-				<a class="github-button" href="https://github.com/mumuy/pacman" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/pacman on GitHub">Star</a>
-				<a class="btn" href="/">返回首页</a>
-			</div>
-		</div>
-		<script src="./static/script/game.js"></script>
-		<script src="./static/script/index.js"></script>
-		<script async defer src="https://buttons.github.io/buttons.js"></script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
-	</body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1e3c72">
+    <title>吃豆人游戏 - Pac-Man</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🎮 吃豆人游戏</h1>
+            <div class="score-board">
+                <div class="score">得分: <span id="score">0</span></div>
+                <div class="level">关卡: <span id="level">1</span></div>
+                <div class="lives">生命: <span id="lives">3</span></div>
+            </div>
+        </div>
+        
+        <div class="game-board">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <div class="game-overlay" id="gameOverlay">
+                <div class="start-screen" id="startScreen">
+                    <h2>🟡 吃豆人大冒险</h2>
+                    <p>使用方向键、WASD或下方触屏按钮控制移动</p>
+                    <p>吃掉所有豆子，避开幽灵！</p>
+                    <button id="startButton" class="game-button">开始游戏</button>
+                </div>
+                
+                <div class="pause-screen" id="pauseScreen" style="display: none;">
+                    <h2>⏸️ 游戏暂停</h2>
+                    <button id="resumeButton" class="game-button">继续游戏</button>
+                    <button id="restartButton" class="game-button">重新开始</button>
+                </div>
+                
+                <div class="game-over-screen" id="gameOverScreen" style="display: none;">
+                    <h2>💀 游戏结束</h2>
+                    <p>最终得分: <span id="finalScore">0</span></p>
+                    <p id="gameOverMessage">再接再厉！</p>
+                    <button id="playAgainButton" class="game-button">再玩一次</button>
+                </div>
+                
+                <div class="level-complete-screen" id="levelCompleteScreen" style="display: none;">
+                    <h2>🎉 关卡完成！</h2>
+                    <p>恭喜通过第 <span id="completedLevel">1</span> 关！</p>
+                    <button id="nextLevelButton" class="game-button">下一关</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-info">
+                <h3>🎯 游戏说明</h3>
+                <ul>
+                    <li>🔸 吃掉小豆子获得10分</li>
+                    <li>🔹 吃掉大豆子获得50分并暂时无敌</li>
+                    <li>👻 无敌状态下吃掉幽灵获得200分</li>
+                    <li>⏸️ 按ESC键暂停游戏</li>
+                    <li>🎮 使用方向键、WASD或触屏按钮移动</li>
+                </ul>
+            </div>
+            
+            <div class="virtual-controls">
+                <div class="dpad">
+                    <button class="dpad-btn" id="upBtn">↑</button>
+                    <div class="dpad-middle">
+                        <button class="dpad-btn" id="leftBtn">←</button>
+                        <button class="dpad-btn" id="rightBtn">→</button>
+                    </div>
+                    <button class="dpad-btn" id="downBtn">↓</button>
+                </div>
+                <button id="pauseBtn" class="control-btn">暂停</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
 </html>
