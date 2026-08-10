@@ -38,6 +38,7 @@ Keep `v0.1.1` immutable for reproducible private testing.
 - `outputs/FINAL_PUBLISH_READINESS.md`
 - `outputs/NEXT_ACTIONS_APIFY_V0.1.1.md`
 - `outputs/APIFY_RESULTS_ANALYSIS_GUIDE.md`
+- `outputs/APIFY_CLI_FALLBACK.md`
 - `outputs/RELEASE_NOTES_V0.1.md`
 - `outputs/RELEASE_NOTES_V0.1.1.md`
 
