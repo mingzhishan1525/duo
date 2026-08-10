@@ -30,6 +30,7 @@ Keep `v0.1.1` immutable for reproducible private testing.
 - `outputs/APIFY_BUILD_HANDOFF_V0.1.1.md`
 - `outputs/APIFY_STORE_LISTING_DRAFT.md`
 - `outputs/PUBLISH_CHECKLIST.md`
+- `outputs/NEXT_ACTIONS_APIFY_V0.1.1.md`
 - `outputs/RELEASE_NOTES_V0.1.md`
 - `outputs/RELEASE_NOTES_V0.1.1.md`
 

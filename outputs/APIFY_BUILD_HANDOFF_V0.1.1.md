@@ -76,5 +76,6 @@ npm run analyze:results -- --input outputs/batch-test-100/results.jsonl --output
 ## Tracking
 
 - GitHub issue: https://github.com/mingzhishan1525/duo/issues/1
+- Next actions: `outputs/NEXT_ACTIONS_APIFY_V0.1.1.md`
 - Release notes: `outputs/RELEASE_NOTES_V0.1.1.md`
 - Store listing draft: `outputs/APIFY_STORE_LISTING_DRAFT.md`
