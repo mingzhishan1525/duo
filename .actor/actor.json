@@ -9,6 +9,7 @@
     "templateId": "node-js"
   },
   "input": "./input_schema.json",
+  "readme": "./README.md",
   "storages": {
     "dataset": "./dataset_schema.json"
   },
