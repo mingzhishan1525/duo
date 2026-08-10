@@ -4,6 +4,8 @@
 
 Website Contact Intelligence is an Apify Actor for extracting public business contact information and basic company metadata from public company websites.
 
+Repository: https://github.com/mingzhishan1525/duo
+
 ## Included
 
 - Node.js Apify Actor using Apify SDK, Axios, Cheerio, and robots-parser.

@@ -4,6 +4,8 @@
 
 It is positioned as a B2B data organization tool for market research, CRM data cleanup, AI Agent workflows, and n8n automation. It is not an email sending tool, not a private email scraper, and does not use browser automation, login, cookies, or Playwright.
 
+GitHub repository: https://github.com/mingzhishan1525/duo
+
 ## What It Does
 
 - Visits each provided company website homepage.
@@ -129,7 +131,7 @@ Recommended launch gates:
 ## Apify Console Run
 
 1. Create a new Actor on Apify.
-2. Upload or connect this repository.
+2. Upload or connect `https://github.com/mingzhishan1525/duo`.
 3. Confirm the Actor uses `.actor/actor.json`.
 4. Build the Actor.
 5. Run it with:

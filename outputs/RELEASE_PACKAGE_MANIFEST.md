@@ -1,5 +1,7 @@
 # Release Package Manifest
 
+Repository: https://github.com/mingzhishan1525/duo
+
 ## Include
 
 - `.actor/actor.json`

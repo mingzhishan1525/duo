@@ -7,7 +7,7 @@ Run Website Contact Intelligence in Apify Console and collect enough evidence fo
 ## Build
 
 1. Create a new Apify Actor.
-2. Connect or upload this project.
+2. Connect or upload `https://github.com/mingzhishan1525/duo`.
 3. Confirm the Actor config points to `.actor/actor.json`.
 4. Build the Actor.
 

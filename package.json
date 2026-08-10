@@ -2,6 +2,10 @@
   "name": "website-contact-extractor",
   "version": "0.1.0",
   "description": "Apify Actor that extracts public business contact information and basic company data from public websites.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mingzhishan1525/duo.git"
+  },
   "type": "module",
   "main": "src/main.js",
   "scripts": {
