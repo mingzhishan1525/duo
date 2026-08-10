@@ -17,6 +17,8 @@ Keep `v0.1.1` immutable for reproducible private testing.
 - `.npmignore`
 - `.github/workflows/ci.yml`
 - `.github/ISSUE_TEMPLATE/apify-validation.md`
+- `.github/ISSUE_TEMPLATE/data-quality-bug.md`
+- `.github/ISSUE_TEMPLATE/feature-request.md`
 - `Dockerfile`
 - `README.md`
 - `package.json`
