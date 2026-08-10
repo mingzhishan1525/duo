@@ -10,6 +10,14 @@
 
 Use `v0.1.1` for the first private validation run. Do not use `main` for this run.
 
+## Pre-Build Checks
+
+- Local tests passed with `npm test`.
+- Local high-severity audit passed with `npm audit --audit-level=high`.
+- Local package dry-run passed with `npm pack --dry-run`.
+- GitHub Actions workflow exists at `.github/workflows/ci.yml`.
+- GitHub Actions run/status was not visible through the connector yet; check the repository Actions tab before treating remote CI as verified.
+
 ## Smoke Run Input
 
 ```json
