@@ -27,6 +27,7 @@ Keep `v0.1.1` immutable for reproducible private testing.
 - `outputs/100_SITE_TEST_REPORT_TEMPLATE.md`
 - `outputs/AI_CTO_REVIEW.md`
 - `outputs/APIFY_CONSOLE_RUNBOOK.md`
+- `outputs/APIFY_BUILD_HANDOFF_V0.1.1.md`
 - `outputs/APIFY_STORE_LISTING_DRAFT.md`
 - `outputs/PUBLISH_CHECKLIST.md`
 - `outputs/RELEASE_NOTES_V0.1.md`
