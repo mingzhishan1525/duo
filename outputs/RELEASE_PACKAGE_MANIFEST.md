@@ -15,6 +15,8 @@ Keep `v0.1.1` immutable for reproducible private testing.
 - `.dockerignore`
 - `.gitignore`
 - `.npmignore`
+- `.github/workflows/ci.yml`
+- `.github/ISSUE_TEMPLATE/apify-validation.md`
 - `Dockerfile`
 - `README.md`
 - `package.json`
