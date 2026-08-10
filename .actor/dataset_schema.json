@@ -1,54 +1,101 @@
 {
   "actorSpecification": 1,
   "fields": {
-    "domain": {
-      "type": "string",
-      "description": "Normalized website domain without www prefix."
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "domain": {
+        "type": "string",
+        "title": "Domain",
+        "description": "Normalized website domain without www prefix."
+      },
+      "companyName": {
+        "type": "string",
+        "title": "Company name",
+        "description": "Best-effort company name inferred from site metadata or page title."
+      },
+      "title": {
+        "type": "string",
+        "title": "Homepage title",
+        "description": "Homepage title."
+      },
+      "metaDescription": {
+        "type": "string",
+        "title": "Meta description",
+        "description": "Homepage meta description."
+      },
+      "emails": {
+        "type": "array",
+        "title": "Emails",
+        "description": "Public email addresses found on inspected pages.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "phoneNumbers": {
+        "type": "array",
+        "title": "Phone numbers",
+        "description": "Likely public business phone numbers found on inspected pages.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "contactPages": {
+        "type": "array",
+        "title": "Contact pages",
+        "description": "Contact page paths successfully inspected.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "socialLinks": {
+        "type": "object",
+        "title": "Social links",
+        "description": "Public social links found on inspected pages.",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "aboutText": {
+        "type": "string",
+        "title": "About text",
+        "description": "Short public company description or about-page text."
+      },
+      "sourcePages": {
+        "type": "array",
+        "title": "Source pages",
+        "description": "Pages successfully fetched and used as extraction sources.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "title": "Timestamp",
+        "description": "ISO timestamp when the Dataset item was collected.",
+        "format": "date-time"
+      },
+      "errors": {
+        "type": "array",
+        "title": "Errors",
+        "description": "Per-page fetch or policy errors observed during extraction.",
+        "items": {
+          "type": "string"
+        }
+      }
     },
-    "companyName": {
-      "type": "string",
-      "description": "Best-effort company name inferred from site metadata or page title."
-    },
-    "title": {
-      "type": "string",
-      "description": "Homepage title."
-    },
-    "metaDescription": {
-      "type": "string",
-      "description": "Homepage meta description."
-    },
-    "emails": {
-      "type": "array",
-      "description": "Public email addresses found on inspected pages."
-    },
-    "phoneNumbers": {
-      "type": "array",
-      "description": "Likely public business phone numbers found on inspected pages."
-    },
-    "contactPages": {
-      "type": "array",
-      "description": "Contact page paths successfully inspected."
-    },
-    "socialLinks": {
-      "type": "object",
-      "description": "Public social links found on inspected pages."
-    },
-    "aboutText": {
-      "type": "string",
-      "description": "Short public company description or about-page text."
-    },
-    "sourcePages": {
-      "type": "array",
-      "description": "Pages successfully fetched and used as extraction sources."
-    },
-    "timestamp": {
-      "type": "string",
-      "description": "ISO timestamp when the Dataset item was collected."
-    },
-    "errors": {
-      "type": "array",
-      "description": "Per-page fetch or policy errors observed during extraction."
-    }
+    "required": [
+      "domain",
+      "companyName",
+      "emails",
+      "phoneNumbers",
+      "contactPages",
+      "socialLinks",
+      "aboutText",
+      "sourcePages",
+      "timestamp"
+    ],
+    "additionalProperties": true
   },
   "views": {
     "overview": {
