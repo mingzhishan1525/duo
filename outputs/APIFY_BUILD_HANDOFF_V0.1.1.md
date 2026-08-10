@@ -20,6 +20,8 @@ Use `v0.1.1` for the first private validation run. Do not use `main` for this ru
 
 ## Smoke Run Input
 
+Use `outputs/apify-smoke-input-v0.1.1.json`, or paste:
+
 ```json
 {
   "startUrls": [
@@ -50,7 +52,7 @@ Use `v0.1.1` for the first private validation run. Do not use `main` for this ru
 
 ## 100-Site Validation
 
-Use `outputs/apify-input-100.json` or regenerate it with:
+Use `outputs/apify-input-100.json`, or regenerate it with:
 
 ```bash
 npm run make:apify-input -- --input work/test-sites-100.txt --output outputs/apify-input-100.json

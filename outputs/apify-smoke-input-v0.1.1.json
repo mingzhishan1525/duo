@@ -1,0 +1,16 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.apify.com"
+    },
+    {
+      "url": "https://www.shopify.com"
+    },
+    {
+      "url": "https://www.stripe.com"
+    }
+  ],
+  "maxPagesPerDomain": 5,
+  "maxConcurrency": 3,
+  "respectRobotsTxt": true
+}
