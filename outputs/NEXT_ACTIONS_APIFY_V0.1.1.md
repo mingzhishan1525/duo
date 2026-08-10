@@ -24,9 +24,16 @@
 
 ## 4. Analyze
 
+Put the Apify Dataset export at either:
+
+- `outputs/batch-test-100/results.jsonl`
+- `outputs/batch-test-100/results.json`
+
 ```bash
 npm run analyze:results -- --input outputs/batch-test-100/results.jsonl --output outputs/batch-test-100/decision-summary.md
 ```
+
+For JSON array export, replace `results.jsonl` with `results.json`.
 
 ## 5. Decide
 
