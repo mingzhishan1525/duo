@@ -32,6 +32,9 @@ NOT YET READY for public Apify Store submission until the Apify Console smoke ru
 - Store submission copy
 - Publish checklist
 - Handoff document
+- Next-actions checklist
+- Apify CLI fallback guide
+- Results analysis guide
 - Issue templates
 - GitHub tracking issue
 
@@ -48,6 +51,7 @@ NOT YET READY for public Apify Store submission until the Apify Console smoke ru
 - 100-site validation in Apify
 - Dataset schema rendering in Apify UI
 - Real-world email and phone precision from Apify runs
+- Apify CLI deployment from this machine, because global `apify` is not installed and local `npx` is blocked by npm cache permissions
 
 ## Required Before Public Store Submission
 
@@ -79,4 +83,6 @@ Avoid positioning as:
 - GitHub issue: https://github.com/mingzhishan1525/duo/issues/1
 - Handoff: `outputs/APIFY_BUILD_HANDOFF_V0.1.1.md`
 - Next actions: `outputs/NEXT_ACTIONS_APIFY_V0.1.1.md`
+- Results guide: `outputs/APIFY_RESULTS_ANALYSIS_GUIDE.md`
+- CLI fallback: `outputs/APIFY_CLI_FALLBACK.md`
 - Store copy: `outputs/APIFY_STORE_SUBMISSION_COPY.md`
