@@ -1,9 +1,7 @@
 node_modules/
 storage/
-outputs/batch-test/
-outputs/batch-test-100/
-outputs/*.tgz
-outputs/*.zip
-work/mock-site/
+outputs/
+work/
+.playwright-mcp/
 .DS_Store
 npm-debug.log*

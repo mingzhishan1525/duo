@@ -1,0 +1,13 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Website Contact Intelligence output",
+  "description": "Public business contact intelligence extracted from the default dataset.",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Results",
+      "description": "Structured website contact intelligence records stored in the default dataset.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?clean=true"
+    }
+  }
+}
