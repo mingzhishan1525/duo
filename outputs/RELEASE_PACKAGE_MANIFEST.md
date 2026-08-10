@@ -2,6 +2,10 @@
 
 Repository: https://github.com/mingzhishan1525/duo
 
+Apify build ref: `v0.1.1`
+
+Keep `v0.1.1` immutable for reproducible private testing.
+
 ## Include
 
 - `.actor/actor.json`
