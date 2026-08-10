@@ -80,7 +80,16 @@
         "title": "Errors",
         "description": "Per-page fetch or policy errors observed during extraction.",
         "items": {
-          "type": "string"
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
         }
       }
     },
