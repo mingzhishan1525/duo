@@ -35,6 +35,7 @@ Keep `v0.1.1` immutable for reproducible private testing.
 - `outputs/APIFY_STORE_LISTING_DRAFT.md`
 - `outputs/APIFY_STORE_SUBMISSION_COPY.md`
 - `outputs/PUBLISH_CHECKLIST.md`
+- `outputs/FINAL_PUBLISH_READINESS.md`
 - `outputs/NEXT_ACTIONS_APIFY_V0.1.1.md`
 - `outputs/APIFY_RESULTS_ANALYSIS_GUIDE.md`
 - `outputs/RELEASE_NOTES_V0.1.md`
