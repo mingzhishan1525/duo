@@ -26,6 +26,7 @@ Repository: https://github.com/mingzhishan1525/duo
 - `outputs/APIFY_STORE_LISTING_DRAFT.md`
 - `outputs/PUBLISH_CHECKLIST.md`
 - `outputs/RELEASE_NOTES_V0.1.md`
+- `outputs/RELEASE_NOTES_V0.1.1.md`
 
 ## Exclude
 

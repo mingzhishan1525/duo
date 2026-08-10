@@ -3,7 +3,7 @@
   "name": "website-contact-extractor",
   "title": "Website Contact Intelligence",
   "description": "Extract public business contact information and basic company details from public company websites.",
-  "version": "0.1",
+  "version": "0.1.1",
   "buildTag": "latest",
   "meta": {
     "templateId": "node-js"

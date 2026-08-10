@@ -1,6 +1,6 @@
 {
   "name": "website-contact-extractor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Apify Actor that extracts public business contact information and basic company data from public websites.",
   "repository": {
     "type": "git",
