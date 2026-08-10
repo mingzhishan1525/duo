@@ -4,12 +4,15 @@
 
 Run Website Contact Intelligence in Apify Console and collect enough evidence for a Store publishing decision.
 
+Use GitHub tag `v0.1.1` for this validation run.
+
 ## Build
 
 1. Create a new Apify Actor.
 2. Connect or upload `https://github.com/mingzhishan1525/duo`.
-3. Confirm the Actor config points to `.actor/actor.json`.
-4. Build the Actor.
+3. Select tag `v0.1.1` as the build source.
+4. Confirm the Actor config points to `.actor/actor.json`.
+5. Build the Actor.
 
 ## Smoke Run
 

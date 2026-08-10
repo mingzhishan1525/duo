@@ -3,6 +3,7 @@
 ## Required Before Apify Store Submission
 
 - Build succeeds in Apify Console.
+- Build source is fixed to GitHub tag `v0.1.1`.
 - Smoke run follows `outputs/APIFY_CONSOLE_RUNBOOK.md`.
 - 100-site input is generated with `npm run make:apify-input`.
 - Actor runs in Apify Console with `maxPagesPerDomain = 5`, `maxConcurrency = 5`, and `respectRobotsTxt = true`.

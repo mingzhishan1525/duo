@@ -4,7 +4,7 @@
 
 - Date:
 - Environment: Apify Console / local server / other
-- Actor version:
+- Actor version: `v0.1.1`
 - Input list: `work/test-sites-100.txt`
 - `maxPagesPerDomain`:
 - `maxConcurrency`:

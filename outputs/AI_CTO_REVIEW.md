@@ -2,6 +2,8 @@
 
 Review mode: standard.
 
+Recommended Apify build ref: GitHub tag `v0.1.1`.
+
 ## Verdict
 
 REVISE before Apify Store submission, but the MVP implementation is directionally sound.

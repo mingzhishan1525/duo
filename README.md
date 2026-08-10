@@ -6,6 +6,8 @@ It is positioned as a B2B data organization tool for market research, CRM data c
 
 GitHub repository: https://github.com/mingzhishan1525/duo
 
+Recommended Apify build ref: `v0.1.1`
+
 ## What It Does
 
 - Visits each provided company website homepage.
@@ -132,9 +134,10 @@ Recommended launch gates:
 
 1. Create a new Actor on Apify.
 2. Upload or connect `https://github.com/mingzhishan1525/duo`.
-3. Confirm the Actor uses `.actor/actor.json`.
-4. Build the Actor.
-5. Run it with:
+3. Select tag `v0.1.1` as the build source.
+4. Confirm the Actor uses `.actor/actor.json`.
+5. Build the Actor.
+6. Run it with:
 
 ```json
 {
