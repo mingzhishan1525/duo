@@ -30,3 +30,6 @@ jobs:
 
       - name: Audit high severity vulnerabilities
         run: npm audit --audit-level=high
+
+      - name: Validate package contents
+        run: npm pack --dry-run

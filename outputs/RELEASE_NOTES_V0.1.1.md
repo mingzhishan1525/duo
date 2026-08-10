@@ -9,6 +9,7 @@ Repository: https://github.com/mingzhishan1525/duo
 ## Changes Since v0.1.0
 
 - Added GitHub Actions CI for install, tests, and high-severity npm audit checks.
+- Added package dry-run validation to CI.
 - Added Apify Store-specific README at `.actor/README.md`.
 - Linked `.actor/actor.json` to the Apify README.
 - Updated repository metadata and publishing documentation.
