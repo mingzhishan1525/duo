@@ -20,7 +20,7 @@
 
 - Use input file: `outputs/apify-input-100.json`
 - Run with `maxPagesPerDomain = 5`, `maxConcurrency = 5`, `respectRobotsTxt = true`.
-- Export Dataset as JSONL.
+- Export Dataset as JSONL or JSON.
 
 ## 4. Analyze
 

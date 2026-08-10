@@ -117,7 +117,7 @@ Review:
 - `outputs/batch-test-100/summary.json`: success rate, coverage, error, and source-page metrics
 - `outputs/100_SITE_TEST_REPORT_TEMPLATE.md`: manual review template
 
-Generate a decision summary after a JSONL batch run:
+Generate a decision summary after a JSONL or JSON batch export:
 
 ```bash
 npm run analyze:results -- --input outputs/batch-test-100/results.jsonl --output outputs/batch-test-100/decision-summary.md

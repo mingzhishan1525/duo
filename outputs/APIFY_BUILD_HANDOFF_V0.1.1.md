@@ -58,7 +58,7 @@ Use `outputs/apify-input-100.json`, or regenerate it with:
 npm run make:apify-input -- --input work/test-sites-100.txt --output outputs/apify-input-100.json
 ```
 
-After the Apify run, export Dataset as JSONL and analyze it locally:
+After the Apify run, export Dataset as JSONL or JSON and analyze it locally:
 
 ```bash
 npm run analyze:results -- --input outputs/batch-test-100/results.jsonl --output outputs/batch-test-100/decision-summary.md

@@ -1,17 +1,19 @@
 import fs from 'node:fs/promises';
 
-const args = parseArgs(process.argv.slice(2));
-const inputPath = args.input ?? 'outputs/batch-test-100/results.jsonl';
-const outputPath = args.output ?? 'outputs/batch-test-100/decision-summary.md';
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const args = parseArgs(process.argv.slice(2));
+  const inputPath = args.input ?? 'outputs/batch-test-100/results.jsonl';
+  const outputPath = args.output ?? 'outputs/batch-test-100/decision-summary.md';
 
-const records = await readJsonl(inputPath);
-const summary = summarize(records);
-const markdown = renderMarkdown(summary);
+  const records = await readDatasetExport(inputPath);
+  const summary = summarize(records);
+  const markdown = renderMarkdown(summary);
 
-await fs.writeFile(outputPath, markdown);
-console.log(`Wrote ${outputPath}`);
+  await fs.writeFile(outputPath, markdown);
+  console.log(`Wrote ${outputPath}`);
+}
 
-function summarize(records) {
+export function summarize(records) {
   const totalSites = records.length;
   const successfulSites = records.filter((item) => item.sourcePages?.length).length;
   const sitesWithEmails = records.filter((item) => item.emails?.length).length;
@@ -46,13 +48,13 @@ function summarize(records) {
   };
 }
 
-function decide(summary) {
+export function decide(summary) {
   if (summary.totalSites < 100) return 'REVISE: run the full 100-site validation before Store submission.';
   if (summary.successRate < 0.9) return 'REVISE: success rate is below the 90% launch gate.';
   return 'PASS CANDIDATE: proceed to manual spot check before Store submission.';
 }
 
-function renderMarkdown(summary) {
+export function renderMarkdown(summary) {
   const errors = summary.errorSamples
     .map((error) => `| ${error.domain} | ${error.url} | ${error.message.replaceAll('|', '\\|')} |`)
     .join('\n');
@@ -93,10 +95,24 @@ ${errors || '|  |  |  |'}
 `;
 }
 
-async function readJsonl(filePath) {
+export async function readDatasetExport(filePath) {
   const content = await fs.readFile(filePath, 'utf8');
+  return parseDatasetExport(content);
+}
+
+export function parseDatasetExport(content) {
+  const trimmed = content.trim();
+  if (!trimmed) return [];
+
+  if (trimmed.startsWith('[')) {
+    const parsed = JSON.parse(trimmed);
+    if (!Array.isArray(parsed)) throw new Error('JSON export must be an array of Dataset items.');
+    return parsed;
+  }
+
   return content
     .split(/\r?\n/)
+    .map((line) => line.trim())
     .filter(Boolean)
     .map((line) => JSON.parse(line));
 }
