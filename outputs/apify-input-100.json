@@ -1,0 +1,307 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.apify.com"
+    },
+    {
+      "url": "https://www.shopify.com"
+    },
+    {
+      "url": "https://www.stripe.com"
+    },
+    {
+      "url": "https://www.hubspot.com"
+    },
+    {
+      "url": "https://www.salesforce.com"
+    },
+    {
+      "url": "https://www.zendesk.com"
+    },
+    {
+      "url": "https://www.intercom.com"
+    },
+    {
+      "url": "https://www.atlassian.com"
+    },
+    {
+      "url": "https://www.notion.com"
+    },
+    {
+      "url": "https://www.airtable.com"
+    },
+    {
+      "url": "https://www.asana.com"
+    },
+    {
+      "url": "https://www.monday.com"
+    },
+    {
+      "url": "https://www.linear.app"
+    },
+    {
+      "url": "https://www.figma.com"
+    },
+    {
+      "url": "https://www.canva.com"
+    },
+    {
+      "url": "https://www.webflow.com"
+    },
+    {
+      "url": "https://www.wix.com"
+    },
+    {
+      "url": "https://www.squarespace.com"
+    },
+    {
+      "url": "https://www.mailchimp.com"
+    },
+    {
+      "url": "https://www.klaviyo.com"
+    },
+    {
+      "url": "https://www.brevo.com"
+    },
+    {
+      "url": "https://www.sendgrid.com"
+    },
+    {
+      "url": "https://www.twilio.com"
+    },
+    {
+      "url": "https://www.zoom.com"
+    },
+    {
+      "url": "https://www.slack.com"
+    },
+    {
+      "url": "https://www.dropbox.com"
+    },
+    {
+      "url": "https://www.box.com"
+    },
+    {
+      "url": "https://www.docusign.com"
+    },
+    {
+      "url": "https://www.adobe.com"
+    },
+    {
+      "url": "https://www.autodesk.com"
+    },
+    {
+      "url": "https://www.servicenow.com"
+    },
+    {
+      "url": "https://www.workday.com"
+    },
+    {
+      "url": "https://www.snowflake.com"
+    },
+    {
+      "url": "https://www.databricks.com"
+    },
+    {
+      "url": "https://www.mongodb.com"
+    },
+    {
+      "url": "https://www.elastic.co"
+    },
+    {
+      "url": "https://www.confluent.io"
+    },
+    {
+      "url": "https://www.cloudflare.com"
+    },
+    {
+      "url": "https://www.fastly.com"
+    },
+    {
+      "url": "https://www.vercel.com"
+    },
+    {
+      "url": "https://www.netlify.com"
+    },
+    {
+      "url": "https://www.digitalocean.com"
+    },
+    {
+      "url": "https://www.linode.com"
+    },
+    {
+      "url": "https://www.heroku.com"
+    },
+    {
+      "url": "https://www.docker.com"
+    },
+    {
+      "url": "https://www.gitlab.com"
+    },
+    {
+      "url": "https://www.github.com"
+    },
+    {
+      "url": "https://www.sentry.io"
+    },
+    {
+      "url": "https://www.posthog.com"
+    },
+    {
+      "url": "https://www.segment.com"
+    },
+    {
+      "url": "https://www.mixpanel.com"
+    },
+    {
+      "url": "https://www.amplitude.com"
+    },
+    {
+      "url": "https://www.hotjar.com"
+    },
+    {
+      "url": "https://www.semrush.com"
+    },
+    {
+      "url": "https://www.ahrefs.com"
+    },
+    {
+      "url": "https://www.moz.com"
+    },
+    {
+      "url": "https://www.similarweb.com"
+    },
+    {
+      "url": "https://www.g2.com"
+    },
+    {
+      "url": "https://www.capterra.com"
+    },
+    {
+      "url": "https://www.trustradius.com"
+    },
+    {
+      "url": "https://www.gong.io"
+    },
+    {
+      "url": "https://www.outreach.io"
+    },
+    {
+      "url": "https://www.salesloft.com"
+    },
+    {
+      "url": "https://www.apollo.io"
+    },
+    {
+      "url": "https://www.zoominfo.com"
+    },
+    {
+      "url": "https://www.clearbit.com"
+    },
+    {
+      "url": "https://www.typeform.com"
+    },
+    {
+      "url": "https://www.surveymonkey.com"
+    },
+    {
+      "url": "https://www.qualtrics.com"
+    },
+    {
+      "url": "https://www.miro.com"
+    },
+    {
+      "url": "https://www.lucidchart.com"
+    },
+    {
+      "url": "https://www.smartsheet.com"
+    },
+    {
+      "url": "https://www.clickup.com"
+    },
+    {
+      "url": "https://www.trello.com"
+    },
+    {
+      "url": "https://www.loom.com"
+    },
+    {
+      "url": "https://www.descript.com"
+    },
+    {
+      "url": "https://www.veed.io"
+    },
+    {
+      "url": "https://www.buffer.com"
+    },
+    {
+      "url": "https://www.hootsuite.com"
+    },
+    {
+      "url": "https://www.sproutsocial.com"
+    },
+    {
+      "url": "https://www.shopline.com"
+    },
+    {
+      "url": "https://www.bigcommerce.com"
+    },
+    {
+      "url": "https://www.woocommerce.com"
+    },
+    {
+      "url": "https://www.shippo.com"
+    },
+    {
+      "url": "https://www.shipstation.com"
+    },
+    {
+      "url": "https://www.flexport.com"
+    },
+    {
+      "url": "https://www.maersk.com"
+    },
+    {
+      "url": "https://www.dhl.com"
+    },
+    {
+      "url": "https://www.fedex.com"
+    },
+    {
+      "url": "https://www.ups.com"
+    },
+    {
+      "url": "https://www.alibaba.com"
+    },
+    {
+      "url": "https://www.globalsources.com"
+    },
+    {
+      "url": "https://www.thomasnet.com"
+    },
+    {
+      "url": "https://www.grainger.com"
+    },
+    {
+      "url": "https://www.mcmaster.com"
+    },
+    {
+      "url": "https://www.uline.com"
+    },
+    {
+      "url": "https://www.3m.com"
+    },
+    {
+      "url": "https://www.ge.com"
+    },
+    {
+      "url": "https://www.siemens.com"
+    },
+    {
+      "url": "https://www.honeywell.com"
+    }
+  ],
+  "maxPagesPerDomain": 5,
+  "maxConcurrency": 5,
+  "respectRobotsTxt": true
+}

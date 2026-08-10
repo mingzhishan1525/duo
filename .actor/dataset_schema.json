@@ -1,0 +1,116 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "domain": {
+      "type": "string",
+      "description": "Normalized website domain without www prefix."
+    },
+    "companyName": {
+      "type": "string",
+      "description": "Best-effort company name inferred from site metadata or page title."
+    },
+    "title": {
+      "type": "string",
+      "description": "Homepage title."
+    },
+    "metaDescription": {
+      "type": "string",
+      "description": "Homepage meta description."
+    },
+    "emails": {
+      "type": "array",
+      "description": "Public email addresses found on inspected pages."
+    },
+    "phoneNumbers": {
+      "type": "array",
+      "description": "Likely public business phone numbers found on inspected pages."
+    },
+    "contactPages": {
+      "type": "array",
+      "description": "Contact page paths successfully inspected."
+    },
+    "socialLinks": {
+      "type": "object",
+      "description": "Public social links found on inspected pages."
+    },
+    "aboutText": {
+      "type": "string",
+      "description": "Short public company description or about-page text."
+    },
+    "sourcePages": {
+      "type": "array",
+      "description": "Pages successfully fetched and used as extraction sources."
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO timestamp when the Dataset item was collected."
+    },
+    "errors": {
+      "type": "array",
+      "description": "Per-page fetch or policy errors observed during extraction."
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "Website Contact Intelligence",
+      "transformation": {
+        "fields": [
+          "domain",
+          "companyName",
+          "emails",
+          "phoneNumbers",
+          "contactPages",
+          "socialLinks",
+          "aboutText",
+          "sourcePages",
+          "timestamp"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "domain": {
+            "label": "Domain",
+            "format": "text"
+          },
+          "companyName": {
+            "label": "Company",
+            "format": "text"
+          },
+          "emails": {
+            "label": "Emails",
+            "format": "array"
+          },
+          "phoneNumbers": {
+            "label": "Phones",
+            "format": "array"
+          },
+          "contactPages": {
+            "label": "Contact pages",
+            "format": "array"
+          },
+          "socialLinks": {
+            "label": "Social links",
+            "format": "object"
+          },
+          "aboutText": {
+            "label": "About text",
+            "format": "text"
+          },
+          "sourcePages": {
+            "label": "Source pages",
+            "format": "array"
+          },
+          "timestamp": {
+            "label": "Timestamp",
+            "format": "date"
+          },
+          "errors": {
+            "label": "Errors",
+            "format": "array"
+          }
+        }
+      }
+    }
+  }
+}

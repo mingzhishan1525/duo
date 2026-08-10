@@ -1,0 +1,38 @@
+# Release Package Manifest
+
+## Include
+
+- `.actor/actor.json`
+- `.actor/input_schema.json`
+- `.actor/dataset_schema.json`
+- `.apifyignore`
+- `.dockerignore`
+- `.gitignore`
+- `.npmignore`
+- `Dockerfile`
+- `README.md`
+- `package.json`
+- `package-lock.json`
+- `src/`
+- `scripts/`
+- `test/`
+- `work/test-sites.txt`
+- `work/test-sites-100.txt`
+- `outputs/100_SITE_TEST_REPORT_TEMPLATE.md`
+- `outputs/AI_CTO_REVIEW.md`
+- `outputs/APIFY_CONSOLE_RUNBOOK.md`
+- `outputs/APIFY_STORE_LISTING_DRAFT.md`
+- `outputs/PUBLISH_CHECKLIST.md`
+- `outputs/RELEASE_NOTES_V0.1.md`
+
+## Exclude
+
+- `node_modules/`
+- `storage/`
+- `work/mock-site/`
+- `outputs/batch-test/`
+- `outputs/batch-test-100/`
+
+## Reason
+
+The release package should contain source code, schemas, validation tooling, and publishing materials. It should not include installed dependencies, local Apify storage, local mock servers, or environment-specific batch outputs.

@@ -1,0 +1,4 @@
+# Replace these with 100 public company websites before Store readiness testing.
+https://example.com
+https://www.apify.com
+https://www.shopify.com

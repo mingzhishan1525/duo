@@ -1,0 +1,8 @@
+node_modules/
+storage/
+outputs/batch-test/
+outputs/batch-test-100/
+outputs/*.tgz
+work/mock-site/
+.DS_Store
+npm-debug.log*

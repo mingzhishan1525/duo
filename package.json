@@ -1,0 +1,31 @@
+{
+  "name": "website-contact-extractor",
+  "version": "0.1.0",
+  "description": "Apify Actor that extracts public business contact information and basic company data from public websites.",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "batch:test": "node scripts/batch-test.js",
+    "make:apify-input": "node scripts/make-apify-input.js",
+    "analyze:results": "node scripts/analyze-results.js",
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "apify",
+    "actor",
+    "contact-intelligence",
+    "b2b-data",
+    "cheerio",
+    "axios"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "apify": "^3.4.4",
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "robots-parser": "^3.0.1"
+  },
+  "devDependencies": {}
+}
